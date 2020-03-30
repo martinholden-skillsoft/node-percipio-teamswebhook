@@ -71,7 +71,7 @@ config.request.query.licensePoolIds = null;
  * Type: string
  * Format: date-time
  */
-config.request.query.updatedSince = moment().utc().subtract(1, 'days').format().toISOString();
+config.request.query.updatedSince = moment().utc().subtract(1, 'days').toISOString();
 /**
  * Name: offset
  * Description : Used in conjunction with 'max' to specify which set of 'max' content items
