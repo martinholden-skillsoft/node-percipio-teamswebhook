@@ -3,21 +3,20 @@ const fs = require('fs');
 const Path = require('path');
 const _ = require('lodash');
 const promiseRetry = require('promise-retry');
-const globalTunnel = require('global-tunnel-ng');
 const stringify = require('json-stringify-safe');
 
 // eslint-disable-next-line no-unused-vars
 const pkginfo = require('pkginfo')(module);
+const mkdirp = require('mkdirp');
 
 const { transports } = require('winston');
 const logger = require('./lib/logger');
-const myutil = require('./lib/util');
 const configuration = require('./config');
 
 const bpjsonatatransform = require('./lib/streams/backpressuretransform.jsonata');
 const bpteamstransform = require('./lib/streams/backpressuretransform.teams');
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'production';
 
 /**
  * Call Percipio API
@@ -209,7 +208,7 @@ const main = async (configOptions) => {
   // Create logging folder if one does not exist
   if (!_.isNull(options.debug.logpath)) {
     if (!fs.existsSync(options.debug.logpath)) {
-      myutil.makeFolder(options.debug.logpath);
+      mkdirp(options.debug.logpath);
     }
   }
 
@@ -228,29 +227,6 @@ const main = async (configOptions) => {
   logger.info(`Start ${module.exports.name}`, loggingOptions);
 
   logger.debug(`Options: ${stringify(options)}`, loggingOptions);
-
-  if (options.debug.checkFiddler) {
-    logger.info('Checking if Fiddler is running', loggingOptions);
-
-    const result = await myutil.isFiddlerRunning(
-      options.debug.fiddlerAddress,
-      options.debug.fiddlerPort
-    );
-
-    if (result) {
-      logger.info('Setting Proxy Configuration so requests are sent via Fiddler', loggingOptions);
-
-      process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-
-      globalTunnel.initialize({
-        host: options.debug.fiddlerAddress,
-        port: options.debug.fiddlerPort,
-      });
-    }
-  } else {
-    // Use the process.env.http_proxy and https_proxy
-    globalTunnel.initialize();
-  }
 
   if (_.isNull(options.teamswebhookurl)) {
     logger.error('Invalid configuration - no teamswebhookurl or set env TEAMSURL', loggingOptions);
