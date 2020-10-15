@@ -26,25 +26,25 @@
 	"author": "Martin Holden <martin.holden@skillsoft.com>",
 	"license": "MIT",
 	"dependencies": {
-		"axios": "^0.19.2",
+		"axios": "^0.20.0",
 		"json-stringify-safe": "^5.0.1",
 		"jsonata-extended": "^0.3.6",
-		"lodash": "^4.17.19",
+		"lodash": "^4.17.20",
 		"mkdirp": "^1.0.4",
-		"moment": "^2.27.0",
+		"moment": "^2.29.1",
 		"pkginfo": "^0.4.1",
 		"promise-retry": "^2.0.1",
 		"winston": "^3.3.3"
 	},
 	"devDependencies": {
-		"auto-changelog": "^2.2.0",
+		"auto-changelog": "^2.2.1",
 		"babel-eslint": "^10.1.0",
-		"eslint": "^7.6.0",
+		"eslint": "^7.11.0",
 		"eslint-config-airbnb-base": "^14.2.0",
-		"eslint-config-prettier": "^6.11.0",
-		"eslint-plugin-import": "^2.22.0",
+		"eslint-config-prettier": "^6.12.0",
+		"eslint-plugin-import": "^2.22.1",
 		"eslint-plugin-prettier": "^3.1.4",
-		"prettier": "^2.0.5",
+		"prettier": "^2.1.2",
 		"rimraf": "^3.0.2"
 	}
 }
