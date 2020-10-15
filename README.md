@@ -17,13 +17,8 @@ Once you have copied this repository set the following NODE ENV variables:
 | ORGID    | Required | This is the Percipio Organiation UUID for your Percipio Site                                                                                                                                                                                         |
 | BEARER   | Required | This is the Percipio Bearer token for a Service Account with permissions for CONTENT DISCOVERY services.                                                                                                                                             |
 | TEAMSURL | Required | This is the incoming webhook for your teams channel. See [Incoming Webhooks Documentation](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#add-an-incoming-webhook-to-a-teams-channel). |
-| CONFIG   | Optional | This is the configuration to use, this name is used to get the correct `config/config.{config}.js`. If not specified defaults to `default`                                                                                                           |
-
-## How to use it
-
-Make the config changes in the appropriate `config/config.{config}.js` file, to specify any additional request criteria for the [catalog-content API call](https://api.percipio.com/content-discovery/api-docs/#/Content/getCatalogContent). See the comments in the file.
-
-Create a [JSONata](https://github.com/jsonata-js/jsonata) transform with name `transform/{config}.jsonata` to convert the Percipio JSON to a [Message Card](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference).
+| CONFIG   | Optional | This is the configuration to use, this name is used to get the correct `config/config.{config}.js`. If not specified defaults to `default` |
+| EUDC | Optional | This is set to any non null value to indicate the Organization is hosted in EU Datacenter. Default: null |
 
 The example configurations:
 
